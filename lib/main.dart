@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         Locale('en'), // English
         Locale('ar'), // Spanish
       ],
-      locale: const Locale("en"),
+
       theme:MyTheme.lightTheme ,
       debugShowCheckedModeBanner: false,
       initialRoute:HomeScreen.routName ,

@@ -7,6 +7,7 @@ import 'package:flutter_projects/taps/radio_tap.dart';
 import 'package:flutter_projects/taps/setting_tap.dart';
 import 'package:flutter_projects/taps/tsabeh_tap.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routName = "home";
@@ -36,40 +37,39 @@ class _HomeScreenState extends State<HomeScreen> {
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
-          bottomNavigationBar: ConvexAppBar(
-            height: 55,
+          bottomNavigationBar: SalomonBottomBar(
+            selectedItemColor: Colors.black,
             backgroundColor: MyTheme.primaryColor,
-            style: TabStyle.react,
-            initialActiveIndex: index,
+            currentIndex: index,
             onTap: (value) {
               index = value;
               setState(() {});
             },
             items: [
-              TabItem(
+              SalomonBottomBarItem(
                   icon: const ImageIcon(
                     AssetImage("assets/images/radio.png"),
                   ),
-                  title: AppLocalizations.of(context)!.radioIcon),
-              TabItem(
+                  title: Text(AppLocalizations.of(context)!.radioIcon)),
+              SalomonBottomBarItem(
                 icon: const ImageIcon(
                   AssetImage("assets/images/sebha.png"),
                 ),
-                title: AppLocalizations.of(context)!.tsapehIcon,
+                title: Text(AppLocalizations.of(context)!.tsapehIcon),
               ),
-              TabItem(
+              SalomonBottomBarItem(
                   icon: const ImageIcon(
                     AssetImage("assets/images/ahades.png"),
                   ),
-                  title: AppLocalizations.of(context)!.hadithIcon),
-              TabItem(
+                  title: Text(AppLocalizations.of(context)!.hadithIcon)),
+              SalomonBottomBarItem(
                   icon: const ImageIcon(
                     AssetImage("assets/images/quran_icon.png"),
                   ),
-                  title: AppLocalizations.of(context)!.quranIcon),
-              TabItem(
+                  title: Text(AppLocalizations.of(context)!.quranIcon)),
+              SalomonBottomBarItem(
                   icon: const Icon(Icons.settings),
-                  title: AppLocalizations.of(context)!.settingIcon),
+                  title: Text(AppLocalizations.of(context)!.settingIcon)),
             ],
           ),
           body: bodies[index],

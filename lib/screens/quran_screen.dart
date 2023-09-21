@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_projects/models/sura_model.dart';
+import 'package:flutter_projects/my_theme.dart';
 
 class SuraContent extends StatefulWidget {
   static const String routeName = "sura";
@@ -42,11 +43,17 @@ class _SuraContentState extends State<SuraContent> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(25),
               ),
-              child: ListView.builder(
+              child: ListView.separated(
+                separatorBuilder: (context, index) => Divider(
+                  thickness: 2,
+                  endIndent: 30,
+                  indent: 30,
+                  color: MyTheme.primaryColor,
+                ),
                 itemBuilder: (context, index) => Text(
                   verses[index],
                   style: Theme.of(context).textTheme.bodyLarge,
-                  textAlign: TextAlign.end,
+                  textAlign: TextAlign.center,
                 ),
                 itemCount: verses.length,
               ),
