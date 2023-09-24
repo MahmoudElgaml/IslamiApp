@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_projects/lists/list_hadeth.dart';
 import 'package:flutter_projects/models/hadeth_model.dart';
 import 'package:flutter_projects/my_theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HadethScreen extends StatelessWidget {
   static const String routName = "hadeth";
@@ -21,7 +22,7 @@ class HadethScreen extends StatelessWidget {
         Scaffold(
           appBar: AppBar(
             title: Text(
-              "اسلامي",
+             AppLocalizations.of(context)!.title,
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ),

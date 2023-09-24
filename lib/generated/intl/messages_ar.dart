@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "radioIcon": MessageLookupByLibrary.simpleMessage("راديو"),
         "settingIcon": MessageLookupByLibrary.simpleMessage("الاعدادات"),
         "suraName": MessageLookupByLibrary.simpleMessage("اسم السوره"),
+        "title": MessageLookupByLibrary.simpleMessage("اسلامي"),
         "tsapehIcon": MessageLookupByLibrary.simpleMessage("تسابيح")
       };
 }

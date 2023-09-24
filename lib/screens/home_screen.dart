@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Scaffold(
           appBar: AppBar(
             title: Text(
-              "اسلامي",
+              AppLocalizations.of(context)!.title,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
