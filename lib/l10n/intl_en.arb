@@ -5,6 +5,10 @@
   "quranIcon": "Quran",
   "radioIcon": "Radio",
   "settingIcon": "setting",
-  "title": "islami"
+  "title": "islami",
+  "arabic": "Arabic",
+  "english": "English",
+  "language": "Language",
+  "theme": "Theming"
 
 }
