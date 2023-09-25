@@ -18,7 +18,7 @@ class _SettingTabState extends State<SettingTab> {
     var provider = Provider.of<MyProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(12),
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

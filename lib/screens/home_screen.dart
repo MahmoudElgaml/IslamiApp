@@ -7,7 +7,10 @@ import 'package:flutter_projects/taps/radio_tap.dart';
 import 'package:flutter_projects/taps/setting_tap.dart';
 import 'package:flutter_projects/taps/tsabeh_tap.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+
+import '../providers/my_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routName = "home";
@@ -23,10 +26,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
     return Stack(
       children: [
         Image.asset(
-          "assets/images/background.png",
+          provider.mode == ThemeMode.light
+              ? "assets/images/background.png"
+              : "assets/images/bg_dark.png",
           width: double.infinity,
           fit: BoxFit.fill,
         ),
@@ -39,7 +45,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           bottomNavigationBar: SalomonBottomBar(
             selectedItemColor: Colors.black,
-            backgroundColor: MyTheme.primaryColor,
+            unselectedItemColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.primary,
             currentIndex: index,
             onTap: (value) {
               index = value;
@@ -68,8 +75,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   title: Text(AppLocalizations.of(context)!.quranIcon)),
               SalomonBottomBarItem(
-                  icon: const Icon(Icons.settings),
-                  title: Text(AppLocalizations.of(context)!.settingIcon)),
+                icon: const Icon(
+                  Icons.settings,
+                ),
+                title: Text(AppLocalizations.of(context)!.settingIcon),
+              ),
             ],
           ),
           body: bodies[index],

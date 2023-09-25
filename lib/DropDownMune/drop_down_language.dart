@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_projects/my_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../providers/my_provider.dart';
@@ -20,29 +21,33 @@ class _DropDownLanguageState extends State<DropDownLanguage> {
     var provider = Provider.of<MyProvider>(context);
 
     return SizedBox(
-      width: double.infinity,
-      child: DropdownButton(
-        items: dropdownItemsLanguage(),
-        onChanged: (value) {
-          value == "English"
-              ? provider.changeLanguage("en")
-              : provider.changeLanguage("ar");
-          selectedValue = value;
-          setState(() {});
-        },
-        value: selectedValue,
-        borderRadius: BorderRadius.circular(25),
-   //   dropdownColor: Colors.red,
+      child: Container(
+        width: double.infinity,
+        child: DropdownButton(
+          dropdownColor: MyTheme.primaryColor,
+          items: dropdownItemsLanguage(),
+          onChanged: (value) {
+            value == "English"
+                ? provider.changeLanguage("en")
+                : provider.changeLanguage("ar");
+            selectedValue = value;
+            setState(() {});
+          },
+          value: selectedValue,
+          borderRadius: BorderRadius.circular(25),
+          //   dropdownColor: Colors.red,
+        ),
       ),
     );
-
   }
+
   List<DropdownMenuItem<String>> dropdownItemsLanguage() {
     List<DropdownMenuItem<String>> menuItems = [
-       DropdownMenuItem(value: "English", child: Text(AppLocalizations.of(context)!.english)),
-       DropdownMenuItem(value: "Arabic", child: Text(AppLocalizations.of(context)!.arabic)),
+      DropdownMenuItem(
+          value: "English", child: Text(AppLocalizations.of(context)!.english)),
+      DropdownMenuItem(
+          value: "Arabic", child: Text(AppLocalizations.of(context)!.arabic)),
     ];
     return menuItems;
   }
-
 }

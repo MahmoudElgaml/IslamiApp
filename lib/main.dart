@@ -34,6 +34,8 @@ class MyApp extends StatelessWidget {
         Locale('ar'), // Spanish
       ],
       theme: MyTheme.lightTheme,
+      darkTheme:MyTheme.darkTheme ,
+      themeMode: provider.mode,
       debugShowCheckedModeBanner: false,
       initialRoute: HomeScreen.routName,
       routes: {

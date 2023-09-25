@@ -22,6 +22,7 @@ class _DropDownThemingState extends State<DropDownTheming> {
         borderRadius: BorderRadius.circular(25),
         items: dropdownItemsTheming(),
         onChanged: (value) {
+          value=="Light"?provider.changeTheme(ThemeMode.light):provider.changeTheme(ThemeMode.dark);
           selectedValue = value;
           setState(() {});
         },
