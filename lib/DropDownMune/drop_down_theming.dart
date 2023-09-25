@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../my_theme.dart';
 import '../providers/my_provider.dart';
 
 class DropDownTheming extends StatefulWidget {
@@ -11,24 +12,29 @@ class DropDownTheming extends StatefulWidget {
 }
 
 class _DropDownThemingState extends State<DropDownTheming> {
-  String? selectedValue = "Light";
 
   @override
   Widget build(BuildContext context) {
+    String? selectedValue ;
     var provider = Provider.of<MyProvider>(context);
+    provider.mode==ThemeMode.light?selectedValue="Light":selectedValue="Dark";
     return SizedBox(
       width: double.infinity,
       child: DropdownButton(
-        borderRadius: BorderRadius.circular(25),
-        items: dropdownItemsTheming(),
-        onChanged: (value) {
-          value=="Light"?provider.changeTheme(ThemeMode.light):provider.changeTheme(ThemeMode.dark);
-          selectedValue = value;
-          setState(() {});
-        },
-        value: selectedValue,
-      ),
-    );
+          dropdownColor: provider.mode == ThemeMode.light
+              ? MyTheme.primaryColor
+              : const Color(0xff141A2E),
+          borderRadius: BorderRadius.circular(25),
+      items: dropdownItemsTheming(),
+      onChanged: (value) {
+       selectedValue=value;
+        value == "Light" ? provider.changeTheme(ThemeMode.light) : provider
+            .changeTheme(ThemeMode.dark);
+
+        setState(() {});
+      },
+      value: selectedValue,
+    ),);
   }
 
   List<DropdownMenuItem<String>> dropdownItemsTheming() {

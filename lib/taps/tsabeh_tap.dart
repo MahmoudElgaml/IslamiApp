@@ -38,6 +38,7 @@ class _TsabehTapState extends State<TsabehTap> {
                 height: 300,
                 child: Image.asset(
                   "assets/images/allsepha.png",
+                  color: Theme.of(context).colorScheme.onSecondary,
                 ),
               ),
               const SizedBox(
@@ -55,7 +56,7 @@ class _TsabehTapState extends State<TsabehTap> {
                 height: 81,
                 width: 69,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFc8b396),
+                  color: Theme.of(context).colorScheme.background,
                   borderRadius: BorderRadius.circular(24),
                 ),
                 child: Text(

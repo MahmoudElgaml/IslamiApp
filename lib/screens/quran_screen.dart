@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_projects/models/sura_model.dart';
 import 'package:flutter_projects/my_theme.dart';
+import 'package:flutter_projects/providers/my_provider.dart';
+import 'package:provider/provider.dart';
 
 class SuraContent extends StatefulWidget {
   static const String routeName = "sura";
@@ -17,6 +19,7 @@ class _SuraContentState extends State<SuraContent> {
 
   @override
   Widget build(BuildContext context) {
+    var provider=Provider.of<MyProvider>(context);
     var args = ModalRoute.of(context)?.settings.arguments as SuraModel;
     if (verses.isEmpty) {
       loadFile(args.index);
@@ -24,7 +27,9 @@ class _SuraContentState extends State<SuraContent> {
     return Stack(
       children: [
         Image.asset(
-          "assets/images/background.png",
+          provider.mode == ThemeMode.light
+              ? "assets/images/background.png"
+              : "assets/images/bg_dark.png",
           fit: BoxFit.fill,
           width: double.infinity,
         ),
@@ -38,7 +43,7 @@ class _SuraContentState extends State<SuraContent> {
           body: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Card(
-              color: const Color(0xFFF8F8F8),
+              color:Theme.of(context).colorScheme.onBackground,
               elevation: 20,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(25),
@@ -51,9 +56,10 @@ class _SuraContentState extends State<SuraContent> {
                   color: MyTheme.primaryColor,
                 ),
                 itemBuilder: (context, index) => Text(
-                  verses[index],
+                 " ${verses[index]}(${index+1})",
                   style: Theme.of(context).textTheme.bodyLarge,
                   textAlign: TextAlign.center,
+                  textDirection: TextDirection.rtl,
                 ),
                 itemCount: verses.length,
               ),

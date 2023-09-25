@@ -14,20 +14,24 @@ class DropDownLanguage extends StatefulWidget {
 }
 
 class _DropDownLanguageState extends State<DropDownLanguage> {
-  String? selectedValue = "English";
-
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<MyProvider>(context);
+    String? selectedValue;
+    provider.languageCode == "en"
+        ? selectedValue = AppLocalizations.of(context)!.english
+        : selectedValue = AppLocalizations.of(context)!.arabic;
 
     return SizedBox(
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
         child: DropdownButton(
-          dropdownColor: MyTheme.primaryColor,
+          dropdownColor: provider.mode == ThemeMode.light
+              ? MyTheme.primaryColor
+              : const Color(0xff141A2E),
           items: dropdownItemsLanguage(),
           onChanged: (value) {
-            value == "English"
+            value == AppLocalizations.of(context)!.english
                 ? provider.changeLanguage("en")
                 : provider.changeLanguage("ar");
             selectedValue = value;
@@ -44,9 +48,11 @@ class _DropDownLanguageState extends State<DropDownLanguage> {
   List<DropdownMenuItem<String>> dropdownItemsLanguage() {
     List<DropdownMenuItem<String>> menuItems = [
       DropdownMenuItem(
-          value: "English", child: Text(AppLocalizations.of(context)!.english)),
+          value: AppLocalizations.of(context)!.english,
+          child: Text(AppLocalizations.of(context)!.english)),
       DropdownMenuItem(
-          value: "Arabic", child: Text(AppLocalizations.of(context)!.arabic)),
+          value: AppLocalizations.of(context)!.arabic,
+          child: Text(AppLocalizations.of(context)!.arabic)),
     ];
     return menuItems;
   }

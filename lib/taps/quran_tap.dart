@@ -138,7 +138,7 @@ class QuranTap extends StatelessWidget {
           ),
           Divider(
             thickness: 1,
-            color: MyTheme.primaryColor,
+            color: Theme.of(context).colorScheme.onSecondary,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -153,12 +153,12 @@ class QuranTap extends StatelessWidget {
           ),
           Divider(
             thickness: 1,
-            color: MyTheme.primaryColor,
+            color:Theme.of(context).colorScheme.onSecondary,
           ),
           Expanded(
             child: ListView.separated(
               separatorBuilder: (context, index) => Divider(
-                color: MyTheme.primaryColor,
+                color: Theme.of(context).colorScheme.onSecondary,
                 thickness: 2,
                 indent: 100,
                 endIndent: 100,

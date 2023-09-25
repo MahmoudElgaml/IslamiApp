@@ -22,12 +22,8 @@ class _AhadethNameState extends State<AhadethName> {
     }
     return Expanded(
       child: ListView.separated(
-        separatorBuilder: (context, index) => Divider(
-          color: MyTheme.primaryColor,
-          thickness: 3,
-          indent: 30,
-          endIndent: 30,
-        ),
+        physics: BouncingScrollPhysics(),
+        separatorBuilder: (context, index) =>const SizedBox(height: 15,),
         itemBuilder: (context, index) => InkWell(
           onTap: () {
             Navigator.pushNamed(

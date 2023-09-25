@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           bottomNavigationBar: SalomonBottomBar(
-            selectedItemColor: Colors.black,
+            selectedItemColor: Theme.of(context).colorScheme.error,
             unselectedItemColor: Colors.white,
             backgroundColor: Theme.of(context).colorScheme.primary,
             currentIndex: index,

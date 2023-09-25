@@ -12,7 +12,7 @@ class ListHadeth extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         itemBuilder: (context, index) => Text(
           hadeth[index],
-          style: Theme.of(context).textTheme.bodySmall,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         itemCount: hadeth.length,
       ),

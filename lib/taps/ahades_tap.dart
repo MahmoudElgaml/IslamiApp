@@ -13,16 +13,16 @@ class AhadesTap extends StatelessWidget {
         children: [
           Image.asset("assets/images/ahadeth_image.png"),
           Divider(
-            thickness: 4,
-            color: MyTheme.primaryColor,
+            thickness: 3,
+            color: Theme.of(context).colorScheme.onSecondary,
           ),
           Text(
             AppLocalizations.of(context)!.hadithIcon,
             style: Theme.of(context).textTheme.bodySmall,
           ),
           Divider(
-            thickness: 4,
-            color: MyTheme.primaryColor,
+            thickness: 3,
+            color: Theme.of(context).colorScheme.onSecondary,
           ),
           const AhadethName(),
         ],
