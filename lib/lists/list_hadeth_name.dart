@@ -1,61 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_projects/providers/list_hadeth_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../models/hadeth_model.dart';
 import '../my_theme.dart';
 import '../screens/hadeth_screen.dart';
 
-class AhadethName extends StatefulWidget {
-  const AhadethName({super.key});
+class ListAhadethName extends StatefulWidget {
+  const ListAhadethName({super.key});
 
   @override
-  State<AhadethName> createState() => _AhadethNameState();
+  State<ListAhadethName> createState() => _AhadethNameState();
 }
 
-class _AhadethNameState extends State<AhadethName> {
-  List<HadethModel> allhadeth = [];
+class _AhadethNameState extends State<ListAhadethName> {
+
 
   @override
   Widget build(BuildContext context) {
-    if (allhadeth.isEmpty) {
-      load();
-    }
-    return Expanded(
-      child: ListView.separated(
-        physics: BouncingScrollPhysics(),
-        separatorBuilder: (context, index) =>const SizedBox(height: 15,),
-        itemBuilder: (context, index) => InkWell(
-          onTap: () {
-            Navigator.pushNamed(
-              context,
-              HadethScreen.routName,
-              arguments: HadethModel(
-                allhadeth[index].title,
-                allhadeth[index].content,
-              ),
-            );
-          },
-          child: Center(
-              child: Text(
-            allhadeth[index].title,
-            style: Theme.of(context).textTheme.bodySmall,
-          )),
-        ),
-        itemCount: allhadeth.length,
-      ),
-    );
+
+    return ChangeNotifierProvider(
+      create: (BuildContext context) =>ListHadthProvider(),
+      builder: (context, child) {
+        var provider=Provider.of<ListHadthProvider>(context);
+        if (provider.allhadeth.isEmpty) {
+         provider.loadHadeth();
+        }
+        return Expanded(
+          child: ListView.separated(
+            physics: BouncingScrollPhysics(),
+            separatorBuilder: (context, index) => const SizedBox(height: 15,),
+            itemBuilder: (context, index) =>
+                InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      HadethScreen.routName,
+                      arguments: HadethModel(
+                        provider.allhadeth[index].title,
+                        provider.allhadeth[index].content,
+                      ),
+                    );
+                  },
+                  child: Center(
+                      child: Text(
+                        provider.allhadeth[index].title,
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .bodySmall,
+                      )),
+                ),
+            itemCount: provider.allhadeth.length,
+          ),
+        );
+
+      });
   }
 
-  load() async {
-    String ahadeth = await rootBundle.loadString("assets/files/ahadeth.txt");
-    List<String> hadeth = ahadeth.split("#");
-    for (int i = 0; i < hadeth.length; i++) {
-      List<String> lines = hadeth[i].trim().split("\n");
-      String title = lines[0];
-      lines.removeAt(0);
-      List<String> content = lines;
-      allhadeth.add(HadethModel(title, content));
-      setState(() {});
-    }
+
   }
-}
+

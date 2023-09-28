@@ -11,7 +11,10 @@ class AhadesTap extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          Image.asset("assets/images/ahadeth_image.png"),
+          Image.asset(
+            "assets/images/ahadeth_image.png",
+            height: MediaQuery.of(context).size.height * .34,
+          ),
           Divider(
             thickness: 3,
             color: Theme.of(context).colorScheme.onSecondary,
@@ -24,7 +27,7 @@ class AhadesTap extends StatelessWidget {
             thickness: 3,
             color: Theme.of(context).colorScheme.onSecondary,
           ),
-          const AhadethName(),
+          const ListAhadethName(),
         ],
       ),
     );

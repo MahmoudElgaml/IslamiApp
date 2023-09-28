@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_projects/providers/sepha_provider.dart';
+import 'package:provider/provider.dart';
 
 class TsabehTap extends StatefulWidget {
   const TsabehTap({super.key});
@@ -8,8 +10,6 @@ class TsabehTap extends StatefulWidget {
 }
 
 class _TsabehTapState extends State<TsabehTap> {
-  int counter = 0;
-  int i = 0;
   List<String> tsapeh = [
     "سبحان الله",
     "الحمد لله",
@@ -20,73 +20,65 @@ class _TsabehTapState extends State<TsabehTap> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: InkWell(
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-        onTap: () {
-          theLogic();
-          setState(() {});
-        },
-        child: SizedBox(
-          width: double.infinity,
-          child: Column(
-            //   crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height*.4,
-                child: Image.asset(
-                  "assets/images/allsepha.png",
-                  color: Theme.of(context).colorScheme.onSecondary,
+    return ChangeNotifierProvider(
+        create: (BuildContext context) => SephaProvider(),
+        builder: (context, child) {
+          var provider = Provider.of<SephaProvider>(context);
+          return Center(
+            child: InkWell(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () {
+                provider.theLogic();
+              },
+              child: SizedBox(
+                width: double.infinity,
+                child: Column(
+                  //   crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * .4,
+                      child: Image.asset(
+                        "assets/images/allsepha.png",
+                        color: Theme.of(context).colorScheme.onSecondary,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Text(
+                      "عدد التسبيحات",
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      height: MediaQuery.of(context).size.height * .1,
+                      width: 69,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.background,
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                      child: Text(
+                        "${provider.counter}",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      tsapeh[provider.i],
+                      style: Theme.of(context).textTheme.bodySmall,
+                    )
+                  ],
                 ),
               ),
-              const SizedBox(
-                height: 30,
-              ),
-              Text(
-                "عدد التسبيحات",
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              Container(
-                alignment: Alignment.center,
-                height: MediaQuery.of(context).size.height*.1,
-                width: 69,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.background,
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                child: Text(
-                  "$counter",
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Text(
-                tsapeh[i],
-                style: Theme.of(context).textTheme.bodySmall,
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-  theLogic() {
-    if (counter <= 32) {
-      counter++;
-    } else {
-      counter = 0;
-      if (i < 4) {
-        i++;
-      } else {
-        i = 0;
-      }
-    }
+            ),
+          );
+        });
   }
 }

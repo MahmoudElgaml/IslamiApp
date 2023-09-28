@@ -135,9 +135,10 @@ class QuranTap extends StatelessWidget {
         children: [
           Image.asset(
             "assets/images/quran_image.png",
+            height: MediaQuery.of(context).size.height*.34,
           ),
           Divider(
-            thickness: 1,
+            thickness: 2,
             color: Theme.of(context).colorScheme.onSecondary,
           ),
           Row(
@@ -152,7 +153,7 @@ class QuranTap extends StatelessWidget {
             ],
           ),
           Divider(
-            thickness: 1,
+            thickness: 2,
             color:Theme.of(context).colorScheme.onSecondary,
           ),
           Expanded(
