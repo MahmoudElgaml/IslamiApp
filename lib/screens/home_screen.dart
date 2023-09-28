@@ -1,5 +1,6 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_projects/providers/home_screen_provider.dart';
 import 'package:flutter_projects/taps/ahades_tap.dart';
 import 'package:flutter_projects/my_theme.dart';
 import 'package:flutter_projects/taps/quran_tap.dart';
@@ -22,70 +23,73 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int index = 0;
 
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<MyProvider>(context);
-    return Stack(
-      children: [
-        Image.asset(
-          provider.mode == ThemeMode.light
-              ? "assets/images/background.png"
-              : "assets/images/bg_dark.png",
-          width: double.infinity,
-          fit: BoxFit.fill,
-        ),
-        Scaffold(
-          appBar: AppBar(
-            title: Text(
-              AppLocalizations.of(context)!.title,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-          ),
-          bottomNavigationBar: SalomonBottomBar(
-            selectedItemColor: Theme.of(context).colorScheme.error,
-            unselectedItemColor: Colors.white,
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            currentIndex: index,
-            onTap: (value) {
-              index = value;
-              setState(() {});
-            },
-            items: [
-              SalomonBottomBarItem(
-                  icon: const ImageIcon(
-                    AssetImage("assets/images/radio.png"),
-                  ),
-                  title: Text(AppLocalizations.of(context)!.radioIcon)),
-              SalomonBottomBarItem(
-                icon: const ImageIcon(
-                  AssetImage("assets/images/sebha.png"),
-                ),
-                title: Text(AppLocalizations.of(context)!.tsapehIcon),
+    return ChangeNotifierProvider(
+        create: (BuildContext context) => HomeProvider(),
+        builder: (context, child) {
+          var homeProvider = Provider.of<HomeProvider>(context);
+        return  Stack(
+            children: [
+              Image.asset(
+                provider.mode == ThemeMode.light
+                    ? "assets/images/background.png"
+                    : "assets/images/bg_dark.png",
+                width: MediaQuery.of(context).size.width,
+                fit: BoxFit.fill,
               ),
-              SalomonBottomBarItem(
-                  icon: const ImageIcon(
-                    AssetImage("assets/images/ahades.png"),
+              Scaffold(
+                appBar: AppBar(
+                  title: Text(
+                    AppLocalizations.of(context)!.title,
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
-                  title: Text(AppLocalizations.of(context)!.hadithIcon)),
-              SalomonBottomBarItem(
-                  icon: const ImageIcon(
-                    AssetImage("assets/images/quran_icon.png"),
-                  ),
-                  title: Text(AppLocalizations.of(context)!.quranIcon)),
-              SalomonBottomBarItem(
-                icon: const Icon(
-                  Icons.settings,
                 ),
-                title: Text(AppLocalizations.of(context)!.settingIcon),
+                bottomNavigationBar: SalomonBottomBar(
+                  selectedItemColor: Theme.of(context).colorScheme.error,
+                  unselectedItemColor: Colors.white,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  currentIndex: homeProvider.index,
+                  onTap: (value) {
+                    homeProvider.theCurrentIndex(value);
+                  },
+                  items: [
+                    SalomonBottomBarItem(
+                        icon: const ImageIcon(
+                          AssetImage("assets/images/radio.png"),
+                        ),
+                        title: Text(AppLocalizations.of(context)!.radioIcon)),
+                    SalomonBottomBarItem(
+                      icon: const ImageIcon(
+                        AssetImage("assets/images/sebha.png"),
+                      ),
+                      title: Text(AppLocalizations.of(context)!.tsapehIcon),
+                    ),
+                    SalomonBottomBarItem(
+                        icon: const ImageIcon(
+                          AssetImage("assets/images/ahades.png"),
+                        ),
+                        title: Text(AppLocalizations.of(context)!.hadithIcon)),
+                    SalomonBottomBarItem(
+                        icon: const ImageIcon(
+                          AssetImage("assets/images/quran_icon.png"),
+                        ),
+                        title: Text(AppLocalizations.of(context)!.quranIcon)),
+                    SalomonBottomBarItem(
+                      icon: const Icon(
+                        Icons.settings,
+                      ),
+                      title: Text(AppLocalizations.of(context)!.settingIcon),
+                    ),
+                  ],
+                ),
+                body: bodies[homeProvider.index],
               ),
             ],
-          ),
-          body: bodies[index],
-        ),
-      ],
-    );
+          );
+        });
   }
 
   List<Widget> bodies = [

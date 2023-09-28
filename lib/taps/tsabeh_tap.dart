@@ -35,7 +35,7 @@ class _TsabehTapState extends State<TsabehTap> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(
-                height: 300,
+                height: MediaQuery.of(context).size.height*.4,
                 child: Image.asset(
                   "assets/images/allsepha.png",
                   color: Theme.of(context).colorScheme.onSecondary,
@@ -53,7 +53,7 @@ class _TsabehTapState extends State<TsabehTap> {
               ),
               Container(
                 alignment: Alignment.center,
-                height: 81,
+                height: MediaQuery.of(context).size.height*.1,
                 width: 69,
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.background,
@@ -65,7 +65,7 @@ class _TsabehTapState extends State<TsabehTap> {
                 ),
               ),
               const SizedBox(
-                height: 10,
+                height: 15,
               ),
               Text(
                 tsapeh[i],
@@ -77,7 +77,6 @@ class _TsabehTapState extends State<TsabehTap> {
       ),
     );
   }
-
   theLogic() {
     if (counter <= 32) {
       counter++;
