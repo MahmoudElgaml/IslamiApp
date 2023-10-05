@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_projects/my_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../providers/my_provider.dart';
 
 class DropDownLanguage extends StatefulWidget {
@@ -17,6 +18,7 @@ class _DropDownLanguageState extends State<DropDownLanguage> {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<MyProvider>(context);
+
     String? selectedValue;
     provider.languageCode == "en"
         ? selectedValue = AppLocalizations.of(context)!.english
@@ -30,7 +32,7 @@ class _DropDownLanguageState extends State<DropDownLanguage> {
               ? MyTheme.primaryColor
               : const Color(0xff141A2E),
           items: dropdownItemsLanguage(),
-          onChanged: (value) {
+          onChanged: (value) async{
             value == AppLocalizations.of(context)!.english
                 ? provider.changeLanguage("en")
                 : provider.changeLanguage("ar");

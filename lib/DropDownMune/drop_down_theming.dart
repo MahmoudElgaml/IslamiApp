@@ -12,29 +12,32 @@ class DropDownTheming extends StatefulWidget {
 }
 
 class _DropDownThemingState extends State<DropDownTheming> {
-
   @override
   Widget build(BuildContext context) {
-    String? selectedValue ;
+    String? selectedValue;
     var provider = Provider.of<MyProvider>(context);
-    provider.mode==ThemeMode.light?selectedValue="Light":selectedValue="Dark";
+    provider.mode == ThemeMode.light
+        ? selectedValue = "Light"
+        : selectedValue = "Dark";
     return SizedBox(
       width: double.infinity,
       child: DropdownButton(
-          dropdownColor: provider.mode == ThemeMode.light
-              ? MyTheme.primaryColor
-              : const Color(0xff141A2E),
-          borderRadius: BorderRadius.circular(25),
-      items: dropdownItemsTheming(),
-      onChanged: (value) {
-       selectedValue=value;
-        value == "Light" ? provider.changeTheme(ThemeMode.light) : provider
-            .changeTheme(ThemeMode.dark);
+        dropdownColor: provider.mode == ThemeMode.light
+            ? MyTheme.primaryColor
+            : const Color(0xff141A2E),
+        borderRadius: BorderRadius.circular(25),
+        items: dropdownItemsTheming(),
+        onChanged: (value) {
+          selectedValue = value;
+          value == "Light"
+              ? provider.changeTheme(true)
+              : provider.changeTheme(false);
 
-        setState(() {});
-      },
-      value: selectedValue,
-    ),);
+          setState(() {});
+        },
+        value: selectedValue,
+      ),
+    );
   }
 
   List<DropdownMenuItem<String>> dropdownItemsTheming() {
