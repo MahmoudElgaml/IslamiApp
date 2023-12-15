@@ -3,7 +3,7 @@ import 'package:flutter_projects/providers/my_provider.dart';
 import 'package:flutter_projects/screens/hadeth_screen.dart';
 import 'package:flutter_projects/screens/home_screen.dart';
 import 'package:flutter_projects/my_theme.dart';
-import 'package:flutter_projects/screens/quran_screen.dart';
+import 'package:flutter_projects/screens/quran_screen/quran_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_projects/sharedper.dart';

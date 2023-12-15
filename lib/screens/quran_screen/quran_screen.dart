@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_projects/models/sura_model.dart';
 import 'package:flutter_projects/my_theme.dart';
 import 'package:flutter_projects/providers/my_provider.dart';
-import 'package:flutter_projects/providers/quran_screen_provider.dart';
+import 'package:flutter_projects/screens/quran_screen/quran_screen_provider.dart';
 import 'package:provider/provider.dart';
 
 class SuraContent extends StatefulWidget {

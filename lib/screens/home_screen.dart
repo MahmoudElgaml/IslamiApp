@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_projects/providers/home_screen_provider.dart';
 import 'package:flutter_projects/taps/ahades_tap.dart';
 import 'package:flutter_projects/my_theme.dart';
-import 'package:flutter_projects/taps/quran_tap.dart';
+import 'package:flutter_projects/taps/quran_tap/quran_tap.dart';
 import 'package:flutter_projects/taps/radio_tap.dart';
 import 'package:flutter_projects/taps/setting_tap.dart';
 import 'package:flutter_projects/taps/tsabeh_tap.dart';
